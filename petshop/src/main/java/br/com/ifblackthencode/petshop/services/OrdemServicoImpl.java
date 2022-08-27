@@ -1,0 +1,30 @@
+package br.com.ifblackthencode.petshop.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.ifblackthencode.petshop.model.OrdemServico;
+import br.com.ifblackthencode.petshop.repository.OrdemServicoRepository;
+
+@Service
+public class OrdemServicoImpl implements IOrdemServicoService {
+	
+	@Autowired
+	private OrdemServicoRepository repository;
+	
+	@Override
+	public OrdemServico inserirNovo(OrdemServico novo) {
+		// TODO Auto-generated method stub
+		if(novo.getAnimal()!=null) {
+			return repository.save(novo);
+		}
+		return null;
+	}
+ 
+	@Override
+	public OrdemServico recuperarPeloNum(Integer id) {
+		// TODO Auto-generated method stub
+		return repository.findById(id).orElse(null);
+	}
+	
+}
